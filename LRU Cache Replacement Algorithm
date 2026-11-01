@@ -1,0 +1,33 @@
+cache = []
+capacity = 3
+hits = 0
+misses = 0
+
+sequence = [4, 2, 1, 4, 3, 2, 5, 4]
+
+for block in sequence:
+    removed = "-"
+
+    if block in cache:
+        hits += 1
+        cache.remove(block)
+        cache.append(block)
+        status = "HIT"
+    else:
+        misses += 1
+        status = "MISS"
+
+        if len(cache) == capacity:
+            removed = cache.pop(0)
+
+        cache.append(block)
+
+    print("Block:", block)
+    print("Status:", status)
+    print("Cache:", cache)
+    print("Removed:", removed)
+    print()
+
+print("Total Hits:", hits)
+print("Total Misses:", misses)
+print("Hit Ratio:", hits / len(sequence))
